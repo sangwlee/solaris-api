@@ -18,7 +18,23 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      }
+      },
+      studentId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Students",
+          key:"id"
+        }
+      },
+      teacherId: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Teachers",
+          key:"id"
+        }
+      },
     });
   },
   down: (queryInterface, Sequelize) => {

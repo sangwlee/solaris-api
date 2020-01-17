@@ -5,4 +5,5 @@ module.exports = app => {
   app.get('/users/:id', userController.read);
   app.patch('/users/:id', userController.update);
   app.delete('/users/:id', userController.delete);
+  app.post('/users/authenticate', userController.authenticate);
 };

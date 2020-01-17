@@ -9,7 +9,15 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       allowNull: false,
-    }
+    },
+    planId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Plan",
+        key:"id"
+      },
+    },
   }, {});
 
   Log.associate = function(models) {

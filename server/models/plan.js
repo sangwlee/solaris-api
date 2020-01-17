@@ -13,7 +13,23 @@ module.exports = (sequelize, DataTypes) => {
     description: {
       type: DataTypes.STRING,
       allowNull: true,
-    }
+    },
+    studentId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Student",
+        key:"id"
+      }
+    },
+    teacherId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Teacher",
+        key:"id"
+      }
+    },
   }, {});
 
   Plan.associate = function(models) {

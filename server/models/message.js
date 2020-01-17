@@ -6,7 +6,23 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
-    text: DataTypes.STRING
+    text: DataTypes.STRING,
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "User",
+        key:"id"
+      }
+    },
+    planId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Plan",
+        key:"id"
+      }
+    },
   }, {});
   Message.associate = function(models) {
     Message.belongsTo(models.User, {

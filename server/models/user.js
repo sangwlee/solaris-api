@@ -7,7 +7,10 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     username: DataTypes.STRING,
-    password: DataTypes.STRING
+    password: DataTypes.STRING,
+    email: DataTypes.STRING,
+    firstname: DataTypes.STRING,
+    lastname: DataTypes.STRING,
   }, {});
   User.associate = function(models) {
     User.hasMany(models.Student, {

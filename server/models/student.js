@@ -6,6 +6,14 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       autoIncrement: true,
     },
+    userId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "User",
+        key:"id"
+      }
+    },
   }, {});
   Student.associate = function(models) {
     Student.belongsTo(models.User, {

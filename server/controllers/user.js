@@ -36,5 +36,14 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
-  }
+  },
+  authenticate: async (req, res) => {
+    console.log(`authenticating: ${JSON.stringify(req.body)}`)
+    try {
+      const user = await User.findOne({ where: req.body })
+      return (user ? res.status(200).json(user) : res.status(400).json(null))
+    } catch (err) {
+      console.log(err)
+    }
+  },
 };

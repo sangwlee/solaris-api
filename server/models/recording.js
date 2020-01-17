@@ -7,7 +7,15 @@ module.exports = (sequelize, DataTypes) => {
       autoIncrement: true,
     },
     type: DataTypes.STRING,
-    url: DataTypes.STRING
+    url: DataTypes.STRING,
+    logId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+      references: {
+        model: "Log",
+        key:"id"
+      }
+    },
   }, {});
   Recording.associate = function(models) {
     Recording.belongsTo(models.Log, {
