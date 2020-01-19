@@ -46,4 +46,30 @@ module.exports = {
       console.log(err)
     }
   },
+  getStudents: async (req, res) => {
+    const { userId } = req.params
+    const user = await User.findOne({ where: { id: userId } })
+    const teacher = await user.getTeacher()
+
+    if (!teacher) { 
+      return res.status(404).json(null) 
+    } else {
+      const students = await teacher.getStudents()
+      const studentUsers = await Promise.all(students.map(async student => (await student.getUser())))
+      return res.status(200).json(studentUsers)
+    }
+  },
+  getTeachers: async (req, res) => {
+    const { userId } = req.params
+    const user = await User.findOne({ where: { id: userId }})
+    const student = await user.getStudent()
+
+    if (!student) {
+      return res.status(404).json(null)
+    } else {
+      const teachers = await student.getTeachers()
+      const teacherUsers = await Promise.all(teachers.map(async teacher => (await teacher.getUser())))
+      return res.status(200).json(teacherUsers)
+    }
+  },
 };

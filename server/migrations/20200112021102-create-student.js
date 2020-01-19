@@ -2,11 +2,14 @@
 module.exports = {
   up: (queryInterface, Sequelize) => {
     return queryInterface.createTable('Students', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
+      userId: {
         primaryKey: true,
         type: Sequelize.INTEGER,
+        allowNull: false,
+        references: {
+          model: "Users",
+          key:"id"
+        },
         unique: true,
       },
       createdAt: {
@@ -16,14 +19,6 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      userId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Users",
-          key:"id"
-        }
       },
     });
   },

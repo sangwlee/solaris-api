@@ -14,14 +14,6 @@ module.exports = (sequelize, DataTypes) => {
     lastname: DataTypes.STRING,
   }, {});
   User.associate = function(models) {
-    User.hasMany(models.Student, {
-      foreignKey: 'userId',
-      as: 'students',
-    }),
-    User.hasMany(models.Teacher, {
-      foreignKey: 'userId',
-      as: 'teachers',
-    }),
     User.hasMany(models.Lesson, {
       foreignKey: 'userId',
       as: 'lessons',
@@ -29,6 +21,14 @@ module.exports = (sequelize, DataTypes) => {
     User.hasMany(models.Message, {
       foreignKey: 'userId',
       as: 'messages',
+    }),
+    User.hasOne(models.Student, { 
+      foreignKey: 'userId' ,
+      as: 'student',
+    }),
+    User.hasOne(models.Teacher, { 
+      foreignKey: 'userId',
+      as: 'teacher',
     })
   };
   return User;

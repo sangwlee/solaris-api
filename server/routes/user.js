@@ -6,4 +6,6 @@ module.exports = app => {
   app.patch('/users/:id', userController.update);
   app.delete('/users/:id', userController.delete);
   app.post('/users/authenticate', userController.authenticate);
+  app.get('/users/:userId/teachers', userController.getTeachers);
+  app.get('/users/:userId/students', userController.getStudents);
 };

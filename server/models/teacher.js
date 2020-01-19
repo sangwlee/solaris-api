@@ -1,13 +1,8 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
   const Teacher = sequelize.define('Teacher', {
-    id: {
-      type: DataTypes.INTEGER,
-      primaryKey: true,
-      autoIncrement: true,
-      unique: true,
-    },
     userId: {
+      primaryKey: true,
       type: DataTypes.INTEGER,
       allowNull: false,
       references: {
@@ -24,6 +19,10 @@ module.exports = (sequelize, DataTypes) => {
     Teacher.hasMany(models.Plan, {
       foreignKey: 'teacherId',
       onDelete: 'CASCADE',
+    }),
+    Teacher.belongsToMany(models.Student, { 
+      through: 'StudentTeachers',
+      foreignKey: 'teacherId',
     })
   };
   return Teacher;
