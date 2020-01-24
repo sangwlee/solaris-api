@@ -6,6 +6,7 @@ const recordingRoute = require('./recording')
 const studentRoute = require('./student')
 const teacherRoute = require('./teacher')
 const userRoute = require('./user')
+const requestRoute = require('./request')
 
 module.exports = app => {
   lessonRoute(app)
@@ -16,4 +17,5 @@ module.exports = app => {
   studentRoute(app)
   teacherRoute(app)
   userRoute(app)
+  requestRoute(app)
 };

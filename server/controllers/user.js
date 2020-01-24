@@ -52,7 +52,7 @@ module.exports = {
     const teacher = await user.getTeacher()
 
     if (!teacher) { 
-      return res.status(404).json(null) 
+      return res.status(404).json([]) 
     } else {
       const students = await teacher.getStudents()
       const studentUsers = await Promise.all(students.map(async student => (await student.getUser())))
@@ -65,7 +65,7 @@ module.exports = {
     const student = await user.getStudent()
 
     if (!student) {
-      return res.status(404).json(null)
+      return res.status(404).json([])
     } else {
       const teachers = await student.getTeachers()
       const teacherUsers = await Promise.all(teachers.map(async teacher => (await teacher.getUser())))

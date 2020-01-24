@@ -6,6 +6,7 @@ const recording = require('./recording');
 const student = require('./student');
 const teacher = require('./teacher');
 const user = require('./user'); 
+const request = require('./request');
 
 module.exports = {
   lesson,
@@ -16,4 +17,5 @@ module.exports = {
   student,
   teacher,
   user,
+  request,
 };

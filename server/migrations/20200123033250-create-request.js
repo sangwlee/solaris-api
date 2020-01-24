@@ -1,16 +1,26 @@
 'use strict';
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.createTable('Plans', {
+    return queryInterface.createTable('Requests', {
       id: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: Sequelize.INTEGER,
-        unique: true,
+        type: Sequelize.INTEGER
       },
-      date: {
-        type: Sequelize.DATE
+      studentId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Students",
+          key: "userId",
+        }
+      },
+      teacherId: {
+        type: Sequelize.INTEGER,
+        references: {
+          model: "Teachers",
+          key: "userId",
+        }
       },
       createdAt: {
         allowNull: false,
@@ -19,26 +29,10 @@ module.exports = {
       updatedAt: {
         allowNull: false,
         type: Sequelize.DATE
-      },
-      studentId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Students",
-          key:"userId"
-        }
-      },
-      teacherId: {
-        type: Sequelize.INTEGER,
-        allowNull: false,
-        references: {
-          model: "Teachers",
-          key:"userId"
-        }
-      },
+      }
     });
   },
   down: (queryInterface, Sequelize) => {
-    return queryInterface.dropTable('Plans');
+    return queryInterface.dropTable('Requests');
   }
 };

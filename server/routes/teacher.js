@@ -5,4 +5,6 @@ module.exports = app => {
   app.get('/teachers/:id', teacherController.read);
   app.patch('/teachers/:id', teacherController.update);
   app.delete('/teachers/:id', teacherController.delete);
+  app.get('/teachers', teacherController.getAllTeachers);
+  app.get('/teachers/:id/requests', teacherController.getAllRequests);
 };

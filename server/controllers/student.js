@@ -36,5 +36,27 @@ module.exports = {
     } catch (err) {
       console.log(err)
     }
+  },
+  getAllStudents: async(req, res) => {
+    try {
+      const students = await Student.findAll();
+      const studentUsers = await Promise.all(students.map(async student => (await student.getUser())));
+      return res.status(200).json(studentUsers);
+    } catch (err) {
+      console.log(err)
+      return res.status(500).json([])
+    }
+  },
+  getAllRequests: async (req, res) => {
+    try {
+      const id = Number(req.params.id)
+      const student = await Student.findOne({ where: { userId: id }});
+      const requests = await student.getRequests()
+      const requestingTeachers = await Promise.all(requests.map(async request => (await request.getTeacher())))
+      const requestingUsers = await Promise.all(requestingTeachers.map(async t => (await t.getUser())))
+      return res.status(200).json(requestingUsers)
+    } catch (err) {
+      console.log(err)
+    }
   }
 };

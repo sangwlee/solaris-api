@@ -20,6 +20,10 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'teacherId',
       onDelete: 'CASCADE',
     }),
+    Teacher.hasMany(models.Request, {
+      foreignKey: 'teacherId',
+      onDelete: 'CASCADE',
+    }),
     Teacher.belongsToMany(models.Student, { 
       through: 'StudentTeachers',
       foreignKey: 'teacherId',
